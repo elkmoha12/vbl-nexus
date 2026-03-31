@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-header">
+  <div class="page-title">Boxers</div>
+  <div class="page-subtitle">Overzicht van alle boxers</div>
+</div>
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th>Naam</th>
+        <th>Club</th>
+        <th>Gewichtsklasse</th>
+        <th>W</th>
+        <th>V</th>
+        <th>G</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for boxer in boxers %}
+      <tr>
+        <td>{{ boxer.voornaam }} {{ boxer.achternaam }}</td>
+        <td>{{ boxer.club }}</td>
+        <td>{{ boxer.gewichtsklasse }}</td>
+        <td style="color:#f2b300;">{{ boxer.overwinningen }}</td>
+        <td style="color:#c00;">{{ boxer.verlies }}</td>
+        <td>{{ boxer.gelijkspel }}</td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="6" style="color:#555;">Geen boxers gevonden.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+

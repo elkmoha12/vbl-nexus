@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-header">
+  <div class="page-title">Clubs</div>
+  <div class="page-subtitle">Aangesloten clubs bij de Vlaamse Boks Liga</div>
+</div>
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th>Club</th>
+        <th>Stad</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for club in clubs %}
+      <tr>
+        <td>{{ club.naam }}</td>
+        <td>{{ club.stad }}</td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="2" style="color:#555;">Geen clubs gevonden.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+

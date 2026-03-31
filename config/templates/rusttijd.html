@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-header">
+  <div class="page-title">Rusttijd</div>
+  <div class="page-subtitle">Medische rusttijden toewijzen aan boxers</div>
+</div>
+
+<div style="display:grid; grid-template-columns:1fr 1.5fr; gap:24px;">
+
+  <div class="card">
+    <div class="card-title">Rusttijd toewijzen</div>
+    {% if error %}<p style="color:#c00; margin-bottom:12px;">{{ error }}</p>{% endif %}
+    {% if success %}<p style="color:#2ecc71; margin-bottom:12px;">{{ success }}</p>{% endif %}
+    <form method="POST">
+      {% csrf_token %}
+      <label style="color:#aaa; font-size:13px;">Boxer</label>
+      <select name="boxer">
+        {% for boxer in boxers %}
+        <option value="{{ boxer.id }}">{{ boxer.voornaam }} {{ boxer.achternaam }}</option>
+        {% empty %}
+        <option disabled>Geen boxers gevonden</option>
+        {% endfor %}
+      </select>
+      <label style="color:#aaa; font-size:13px;">Rusttijd tot</label>
+      <input type="date" name="rusttijd_tot" required>
+      <button class="btn btn-primary" type="submit" style="width:100%; margin-top:8px;">Opslaan</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Boxers in rusttijd</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Boxer</th>
+          <th>Club</th>
+          <th>Rusttijd tot</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for boxer in boxers_in_rust %}
+        <tr>
+          <td>{{ boxer.voornaam }} {{ boxer.achternaam }}</td>
+          <td>{{ boxer.club }}</td>
+          <td>{{ boxer.rusttijd_tot }}</td>
+          <td style="color:#c00;">⛔ In rust</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4" style="color:#555;">Geen boxers in rusttijd.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</div>
+{% endblock %}
+

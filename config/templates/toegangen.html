@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-header">
+  <div class="page-title">Toegangen</div>
+  <div class="page-subtitle">Gebruikers aanmaken en rollen beheren</div>
+</div>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+
+  <div class="card">
+    <div class="card-title">Nieuwe gebruiker</div>
+    {% if error %}
+      <p style="color:#c00; margin-bottom:12px;">{{ error }}</p>
+    {% endif %}
+    {% if success %}
+      <p style="color:#2ecc71; margin-bottom:12px;">{{ success }}</p>
+    {% endif %}
+    <form method="POST">
+      {% csrf_token %}
+      <label style="color:#aaa; font-size:13px;">Voornaam</label>
+      <input type="text" name="voornaam" required>
+      <label style="color:#aaa; font-size:13px;">Achternaam</label>
+      <input type="text" name="achternaam" required>
+      <label style="color:#aaa; font-size:13px;">Gebruikersnaam</label>
+      <input type="text" name="username" required>
+      <label style="color:#aaa; font-size:13px;">Tijdelijk wachtwoord</label>
+      <input type="text" name="password" required>
+      <label style="color:#aaa; font-size:13px;">Rol</label>
+      <select name="role">
+        <option value="administrateur">Administrateur</option>
+        <option value="arbitre">Arbitre</option>
+        <option value="medecin">Médecin</option>
+      </select>
+      <button class="btn btn-primary" type="submit" style="width:100%; margin-top:8px;">Aanmaken</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Bestaande gebruikers</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Naam</th>
+          <th>Username</th>
+          <th>Rol</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for profile in users %}
+        <tr>
+          <td>{{ profile.user.first_name }} {{ profile.user.last_name }}</td>
+          <td>{{ profile.user.username }}</td>
+          <td style="color:#f2b300;">{{ profile.role }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3" style="color:#555;">Geen gebruikers gevonden.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</div>
+{% endblock %}
+

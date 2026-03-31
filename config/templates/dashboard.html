@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-header">
+  <div class="page-title">Dashboard</div>
+  <div class="page-subtitle">Welkom op het intern platform van de Vlaamse Boks Liga</div>
+</div>
+
+<div class="card">
+  <div class="card-title">Overzicht</div>
+  <table>
+    <tr>
+      <th>Boxers</th>
+      <th>Clubs</th>
+      <th>Evenementen</th>
+    </tr>
+    <tr>
+      <td>{{ boxers_count }}</td>
+      <td>{{ clubs_count }}</td>
+      <td>{{ events_count }}</td>
+    </tr>
+  </table>
+</div>
+{% endblock %}

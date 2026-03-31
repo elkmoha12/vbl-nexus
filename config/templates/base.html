@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VBL Nexus</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background-color: #0a0a0a; color: white; }
+.layout { display: flex; min-height: 100vh; }
+.sidebar { width: 260px; background: #111; border-right: 1px solid #222; padding: 24px 16px; display: flex; flex-direction: column; }
+.logo { font-size: 28px; font-weight: 900; color: #f2b300; margin-bottom: 4px; }
+.logo-sub { font-size: 12px; color: #666; margin-bottom: 32px; }
+.nav-link { display: block; padding: 14px 16px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; color: #ccc; background: #1a1a1a; border: 1px solid #222; font-size: 15px; transition: 0.2s; }
+.nav-link:hover, .nav-link.active { background: #f2b300; color: #000; font-weight: 700; border-color: #f2b300; }
+.nav-section { font-size: 11px; color: #444; text-transform: uppercase; margin: 16px 0 8px 4px; letter-spacing: 1px; }
+.main { flex: 1; padding: 32px; background: #0a0a0a; }
+.page-header { margin-bottom: 32px; }
+.page-title { font-size: 42px; font-weight: 900; color: #f2b300; }
+.page-subtitle { color: #c00; font-size: 16px; margin-top: 6px; }
+.card { background: #111; border: 1px solid #222; border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+.card-title { font-size: 20px; font-weight: 700; color: #f2b300; margin-bottom: 16px; }
+.btn { padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; }
+.btn-primary { background: #f2b300; color: #000; }
+.btn-danger { background: #c00; color: #fff; }
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; padding: 12px; color: #f2b300; border-bottom: 1px solid #222; font-size: 13px; text-transform: uppercase; }
+td { padding: 12px; border-bottom: 1px solid #1a1a1a; color: #ddd; font-size: 14px; }
+tr:hover td { background: #1a1a1a; }
+input, select { background: #1a1a1a; border: 1px solid #333; color: white; padding: 10px 14px; border-radius: 8px; font-size: 14px; width: 100%; margin-bottom: 12px; }
+.user-info { margin-top: auto; padding-top: 16px; border-top: 1px solid #222; font-size: 13px; color: #666; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="logo">VBL Nexus</div>
+    <div class="logo-sub">Vlaamse Boks Liga</div>
+
+    <a class="nav-link" href="/">Dashboard</a>
+    <a class="nav-link" href="/boxers/">Boxers</a>
+    <a class="nav-link" href="/boxers/clubs/">Clubs</a>
+    <a class="nav-link" href="/events/">Evenementen</a>
+
+    {% if user.is_authenticated %}
+      {% if user.userprofile.role == 'administrateur' or user.is_superuser %}
+        <div class="nav-section">Beheer</div>
+        <a class="nav-link" href="/toegangen/">Toegangen</a>
+      {% endif %}
+      {% if user.userprofile.role == 'arbitre' or user.is_superuser %}
+        <div class="nav-section">Arbitre</div>
+        <a class="nav-link" href="/palmares/">Palmares</a>
+      {% endif %}
+      {% if user.userprofile.role == 'medecin' or user.is_superuser %}
+        <div class="nav-section">Médecin</div>
+        <a class="nav-link" href="/rusttijd/">Rusttijd</a>
+      {% endif %}
+      <div class="user-info">
+        Ingelogd als <strong>{{ user.username }}</strong><br>
+        <a href="/logout/" style="color:#c00;">Uitloggen</a>
+      </div>
+    {% else %}
+      <a class="nav-link" href="/login/">Inloggen</a>
+    {% endif %}
+  </aside>
+  <main class="main">
+    {% block content %}{% endblock %}
+  </main>
+</div>
+</body>
+</html>

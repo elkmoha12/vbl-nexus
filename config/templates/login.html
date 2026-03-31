@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-header">
+  <div class="page-title">Inloggen</div>
+  <div class="page-subtitle">Toegang voor administrateurs, arbitres en médecins</div>
+</div>
+<div class="card" style="max-width: 400px;">
+  {% if error %}
+    <p style="color:#c00; margin-bottom:16px;">{{ error }}</p>
+  {% endif %}
+  <form method="POST">
+    {% csrf_token %}
+    <label style="color:#aaa; font-size:13px;">Gebruikersnaam</label>
+    <input type="text" name="username" autofocus>
+    <label style="color:#aaa; font-size:13px;">Wachtwoord</label>
+    <input type="password" name="password">
+    <button class="btn btn-primary" type="submit" style="width:100%; margin-top:8px;">Inloggen</button>
+  </form>
+</div>
+{% endblock %}
+
