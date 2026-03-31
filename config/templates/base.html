@@ -69,3 +69,92 @@ input, select { background: #1a1a1a; border: 1px solid #333; color: white; paddi
 </div>
 </body>
 </html>
+
+<footer style="background:#0a0a0a; border-top:1px solid #1a1a1a; padding:40px 34px 20px 34px; margin-top:auto;">
+  
+  <!-- Sponsors -->
+  <div style="text-align:center; margin-bottom:40px;">
+    <div style="color:#f2b300; font-size:13px; text-transform:uppercase; letter-spacing:2px; margin-bottom:24px;">Sponsors</div>
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:32px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/CEMAS_logo.svg/200px-CEMAS_logo.svg.png" alt="CEMAS" style="height:50px; filter:brightness(0) invert(1);" onerror="this.style.display='none'">
+      <div style="color:white; font-weight:700; font-size:18px;">Team Belgium</div>
+      <div style="color:#2e7d32; font-weight:900; font-size:20px;">GREEN HILL</div>
+      <div style="color:white; font-weight:700; font-size:18px;">BOXING FUEL</div>
+      <div style="color:#1565c0; font-weight:700; font-size:18px;">Sport Vlaanderen</div>
+      <div style="color:#e65100; font-weight:700; font-size:18px;">GIVOVA</div>
+      <div style="color:white; font-weight:700; font-size:18px;">Vechtsport Platform</div>
+      <div style="color:#f2b300; font-weight:900; font-size:20px;">BOXE<span style="color:white;">BELGIUM</span></div>
+    </div>
+  </div>
+
+  <!-- Grid contact/info/sponsors -->
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:40px; padding-top:32px; border-top:1px solid #1a1a1a;">
+    
+    <div>
+      <div style="color:#f2b300; font-size:14px; text-transform:uppercase; letter-spacing:2px; margin-bottom:16px;">Contact</div>
+      <div style="color:#aaa; font-size:14px; line-height:2;">
+        <strong style="color:white;">VLAAMSE BOKS LIGA vzw</strong><br>
+        Boomgaardstraat 22/34<br>
+        2600 Berchem<br>
+        BE 0879.722.890<br>
+        📞 0488/82 42 09<br>
+        ✉️ info@vlaamseboksliga.com
+      </div>
+    </div>
+
+    <div>
+      <div style="color:#f2b300; font-size:14px; text-transform:uppercase; letter-spacing:2px; margin-bottom:16px;">Informatie</div>
+      <div style="color:#aaa; font-size:14px; line-height:2.2;">
+        <a href="#" style="color:#aaa; text-decoration:none; display:block;">⬇️ Downloads</a>
+        <a href="#" style="color:#aaa; text-decoration:none; display:block;">📢 Meldpunt</a>
+        <a href="#" style="color:#aaa; text-decoration:none; display:block;">📍 Clubfinder</a>
+        <a href="#" style="color:#aaa; text-decoration:none; display:block;">🩺 Erkende artsen</a>
+        <a href="#" style="color:#aaa; text-decoration:none; display:block;">🚫 Doping preventie</a>
+        <a href="#" style="color:#aaa; text-decoration:none; display:block;">🔒 Privacy GDPR</a>
+      </div>
+    </div>
+
+    <div>
+      <div style="color:#f2b300; font-size:14px; text-transform:uppercase; letter-spacing:2px; margin-bottom:16px;">Vlaamse Boks Liga</div>
+      <div style="color:#aaa; font-size:14px; line-height:2;">
+        <a href="https://vlaamseboksliga.com" target="_blank" style="color:#f2b300; text-decoration:none;">🌐 vlaamseboksliga.com</a><br>
+        <a href="https://boxebelgium.be" target="_blank" style="color:#aaa; text-decoration:none;">🥊 boxebelgium.be</a><br>
+        <span style="color:#aaa;">📍 Waar vind ik een boksclub?</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center; margin-top:32px; padding-top:20px; border-top:1px solid #1a1a1a; color:#333; font-size:12px;">
+    © 2026 Vlaamse Boks Liga vzw — VBL Nexus
+  </div>
+
+</footer>
+
+<!-- Cookie popup -->
+<div id="cookiePopup" style="position:fixed; bottom:24px; right:24px; width:340px; background:#111; border:1px solid #333; border-radius:16px; padding:24px; z-index:9999; box-shadow:0 10px 40px rgba(0,0,0,0.6); display:none;">
+  <div style="color:#f2b300; font-size:18px; font-weight:700; margin-bottom:8px;">🍪 Cookies</div>
+  <div style="color:#ccc; font-size:14px; line-height:1.5; margin-bottom:16px;">
+    Deze website gebruikt cookies om de gebruikerservaring te verbeteren. Door verder te gaan, accepteer je ons cookiebeleid.
+  </div>
+  <div style="display:flex; gap:10px;">
+    <button onclick="acceptCookies()" style="flex:1; background:#f2b300; color:#000; border:none; border-radius:8px; padding:10px; font-weight:700; cursor:pointer;">Accepteren</button>
+    <button onclick="declineCookies()" style="flex:1; background:#222; color:#aaa; border:1px solid #333; border-radius:8px; padding:10px; cursor:pointer;">Weigeren</button>
+  </div>
+</div>
+
+<script>
+function acceptCookies() {
+  localStorage.setItem("cookiesAccepted", "yes");
+  document.getElementById("cookiePopup").style.display = "none";
+}
+function declineCookies() {
+  localStorage.setItem("cookiesAccepted", "no");
+  document.getElementById("cookiePopup").style.display = "none";
+}
+window.onload = function() {
+  if (!localStorage.getItem("cookiesAccepted")) {
+    document.getElementById("cookiePopup").style.display = "block";
+  }
+}
+</script>
